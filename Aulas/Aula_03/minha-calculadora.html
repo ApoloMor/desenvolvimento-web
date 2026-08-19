@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form>
+      <input type="number" name="input1" id="input1" />
+
+      <select name="operacao" id="operacao">
+        <option value="soma">Soma</option>
+        <option value="subtracao">Subtração</option>
+        <option value="multiplicacao">Multiplicação</option>
+        <option value="divisao">Divisão</option>
+      </select>
+
+      <input type="number" name="input2" id="input2" />
+      <input type="button" value="Calcular" onclick="Calculo()" />
+      <span id="resultado"></span>
+    </form>
+
+    <script>
+      function Calculo() {
+        const valor1 = Number(document.getElementById("input1").value);
+        const valor2 = Number(document.getElementById("input2").value);
+        const operacao = document.getElementById("operacao").value;
+        let result = null;
+
+        if (operacao === "soma") {
+          result = valor1 + valor2;
+        } else if (operacao === "subtracao") {
+          result = valor1 - valor2;
+        } else if (operacao === "multiplicacao") {
+          result = valor1 * valor2;
+        } else if (operacao === "divisao") {
+          result = valor1 / valor2;
+        }
+
+        document.getElementById("resultado").textContent = result;
+      }
+    </script>
+  </body>
+</html>
