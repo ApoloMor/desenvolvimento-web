@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background-color: rgb(33, 33, 33);
+        color: white;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form name="form1" method="post" action="sucesso.htm">
+      Nome: <input type="text" id="txtName" name="txtName" />
+      <input
+        type="button"
+        value="Enviar"
+        id="btnEnviar"
+        onclick="btnSendOnClick()"
+      />
+    </form>
+  </body>
+  <script>
+    function btnSendOnClick() {
+      const nome = document.getElementById("txtName");
+      if (nome.value.length < 3) {
+        alert("Erro, nome deve ter no minimo 3 caracteres!");
+        nome.value = "";
+        nome.focus();
+      } else {
+        form1.submit();
+      }
+    }
+  </script>
+</html>
