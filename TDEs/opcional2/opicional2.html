@@ -3,7 +3,366 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Validação de Formulários</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #FormBrabo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 1rem;
+      }
+
+      .input-form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .radio-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+    </style>
   </head>
-  <body></body>
+
+  <body>
+    <form
+      name="FormBrabo"
+      id="FormBrabo"
+      onsubmit="return ValidarFormulario();"
+      action="opcional-sucesso.html"
+    >
+      <h2>Formulário brabo</h2>
+
+      <div class="input-form">
+        <label for="txtNome">Insira seu nome:</label>
+        <input
+          type="text"
+          name="txtNome"
+          id="txtNome"
+          placeholder="Nome Sobrenome"
+        />
+      </div>
+
+      <div class="input-form">
+        <label for="txtEmail">Insira seu email:</label>
+        <input
+          type="email"
+          name="txtEmail"
+          id="txtEmail"
+          placeholder="seu.email@exemp.com"
+        />
+      </div>
+
+      <div class="input-form">
+        <label for="pwdUser">Insira sua senha:</label>
+        <input
+          type="password"
+          name="pwdUser"
+          id="pwdUser"
+          placeholder="........"
+        />
+      </div>
+
+      <div class="input-form">
+        <label for="pwdUser2">Confirmar senha:</label>
+        <input
+          type="password"
+          name="pwdUser2"
+          id="pwdUser2"
+          placeholder="........"
+        />
+      </div>
+
+      <div class="input-form">
+        <label for="nmbUser">Insira seu telefone:</label>
+        <input
+          type="text"
+          name="nmbUser"
+          id="nmbUser"
+          placeholder="(XX) XXXXX-XXXX apenas números"
+        />
+      </div>
+
+      <div class="input-form">
+        <label for="cpfUser">Insira seu CPF:</label>
+        <input
+          type="text"
+          name="cpfUser"
+          id="cpfUser"
+          placeholder="XXX.XXX.XXX-XX apenas números"
+        />
+      </div>
+
+      <div class="input-form">
+        <label for="nscUser">Insira sua data de nascimento:</label>
+        <input type="date" name="nscUser" id="nscUser" />
+      </div>
+
+      <p>Informe seu gênero:</p>
+
+      <div class="radio-container">
+        <input type="radio" name="genero" id="homi" value="masculino" />
+        <label for="homi">Masculino</label>
+
+        <input type="radio" name="genero" id="muie" value="feminino" />
+        <label for="muie">Feminino</label>
+
+        <input type="radio" name="genero" id="generoOutro" value="outro" />
+        <label for="outro">Outro/Não informar</label>
+      </div>
+
+      <label for="estado">Selecione seu estado:</label>
+
+      <select name="estado" id="estado">
+        <option value="">Selecione</option>
+        <option value="pr">Paraná</option>
+        <option value="sc">Santa Catarina</option>
+        <option value="sp">São Paulo</option>
+        <option value="rj">Rio de Janeiro</option>
+      </select>
+      <div class="checkbox-container">
+        <input type="checkbox" id="jogos" name="interesse" value="jogos" />
+        <label for="jogos">Jogos</label>
+
+        <input
+          type="checkbox"
+          id="esportes"
+          name="interesse"
+          value="esportes"
+        />
+        <label for="esportes">Esportes</label>
+
+        <input type="checkbox" id="musica" name="interesse" value="musica" />
+        <label for="musica">Música</label>
+      </div>
+      <label>
+        <input type="checkbox" id="outroCheck" />
+        Outro
+      </label>
+
+      <div id="campoOutro" style="display: none">
+        <label for="outro">Digite seu interesse:</label>
+        <input type="text" id="outro" />
+      </div>
+      <button type="submit" id="btnSend">Enviar</button>
+    </form>
+  </body>
+  <script>
+    const nome = document.getElementById("txtNome");
+    const email = document.getElementById("txtEmail");
+    const senha = document.getElementById("pwdUser");
+    const confirmaSenha = document.getElementById("pwdUser2");
+    const telefone = document.getElementById("nmbUser");
+    const cpf = document.getElementById("cpfUser");
+    const dataNascimento = document.getElementById("nscUser");
+    const estado = document.getElementById("estado");
+
+    const outroCheck = document.getElementById("outroCheck");
+    const campoOutro = document.getElementById("campoOutro");
+    const outro = document.getElementById("outro");
+
+    outroCheck.addEventListener("change", function () {
+      if (outroCheck.checked) {
+        campoOutro.style.display = "block";
+      } else {
+        campoOutro.style.display = "none";
+      }
+    });
+
+    function ValidarNome(nome) {
+      if (nome.value.trim() === "") {
+        alert("Digite seu nome!");
+        nome.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarEmail(email) {
+      if (email.value.trim() === "") {
+        alert("Digite seu email!");
+        email.focus();
+        return false;
+      }
+
+      if (!email.value.includes("@")) {
+        alert("Digite um email válido!");
+        email.focus();
+        return false;
+      }
+
+      if (!email.value.includes(".com")) {
+        alert("Digite um email válido!");
+        email.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarSenha(senha) {
+      if (senha.value.trim() === "") {
+        alert("Digite sua senha!");
+        senha.focus();
+        return false;
+      }
+
+      if (senha.value.length < 8) {
+        alert("A senha deve ter no mínimo oito caracteres!");
+        senha.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarConfirmarSenha(senha, confirmaSenha) {
+      if (confirmaSenha.value.trim() === "") {
+        alert("Digite sua senha novamente!");
+        confirmaSenha.focus();
+        return false;
+      }
+
+      if (senha.value !== confirmaSenha.value) {
+        alert("As senhas devem ser iguais!");
+        confirmaSenha.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarTelefone(telefone) {
+      if (telefone.value.trim() === "") {
+        alert("Digite seu telefone!");
+        telefone.focus();
+        return false;
+      }
+
+      if (telefone.value.length !== 11) {
+        alert("Insira apenas DDD e o número!");
+        telefone.focus();
+      }
+
+      return true;
+    }
+
+    function ValidarCPF(cpf) {
+      if (cpf.value.trim() === "") {
+        alert("Digite seu CPF!");
+        cpf.focus();
+        return false;
+      }
+
+      if (cpf.value.length !== 11) {
+        alert("Digite um CPF válido!");
+        cpf.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarDataNascimento(dataNascimento) {
+      if (dataNascimento.value.trim() === "") {
+        alert("Informe sua data de nascimento!");
+        dataNascimento.focus();
+        return false;
+      }
+
+      const dataInformada = new Date(dataNascimento.value);
+      const hoje = new Date();
+
+      if (dataInformada > hoje) {
+        alert("A data de nascimento não pode ser no futuro!");
+        dataNascimento.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarGenero() {
+      const genero = document.querySelector('input[name="genero"]:checked');
+
+      if (genero === null) {
+        alert("Selecione um gênero!");
+        document.querySelector('input[name="genero"]').focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarEstado(estado) {
+      if (estado.value === "") {
+        alert("Selecione um estado!");
+        estado.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarInteresses() {
+      const interesses = document.querySelectorAll(
+        'input[name="interesse"]:checked',
+      );
+
+      if (interesses.length === 0) {
+        alert("Selecione um interesse!");
+        document.querySelector('input[name="interesse"]').focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function ValidarOutroInteresse(outroCheck, outro) {
+      if (outroCheck.checked && outro.value.trim() === "") {
+        alert("Digite seu outro interesse!");
+        document.querySelector('input[name="campoOutro"]').focus();
+        return false;
+      }
+      return true;
+    }
+
+    function ValidarFormulario() {
+      if (!ValidarNome(nome)) return false;
+
+      if (!ValidarEmail(email)) return false;
+
+      if (!ValidarSenha(senha)) return false;
+
+      if (!ValidarConfirmarSenha(senha, confirmaSenha)) return false;
+
+      if (!ValidarTelefone(telefone)) return false;
+
+      if (!ValidarCPF(cpf)) return false;
+
+      if (!ValidarDataNascimento(dataNascimento)) return false;
+
+      if (!ValidarGenero()) return false;
+
+      if (!ValidarEstado(estado)) return false;
+
+      if (!ValidarInteresses()) return false;
+
+      if (!ValidarOutroInteresse(outroCheck, outro)) return false;
+
+      alert("Formulário enviado com sucesso!");
+
+      return true;
+    }
+  </script>
 </html>
