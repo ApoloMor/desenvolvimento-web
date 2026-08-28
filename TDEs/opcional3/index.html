@@ -24,7 +24,7 @@
       }
     </style>
   </head>
-  <body onload="nome.focus()">
+  <body onload="nome.focus(); listarJogos()"">
     <form name="formCadastro" id="formCadastro">
       <div class="items">
         <div class="item">
@@ -51,6 +51,7 @@
         style="padding: 5px"
       />
     </form>
+    <div id="listaJogos"></div>
   </body>
   <script src="script.js"></script>
 </html>
