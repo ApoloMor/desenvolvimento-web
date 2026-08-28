@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opicional 3 - Home</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .item {
+        margin: 1rem;
+      }
+      .items {
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+      }
+      #formCadastro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body onload="nome.focus()">
+    <form name="formCadastro" id="formCadastro">
+      <div class="items">
+        <div class="item">
+          <label for="nome"> Nome do jogo: </label>
+          <input type="text" name="nome" id="nome" /> <br />
+        </div>
+        <div class="item">
+          <label for="ano-lancamento"> Ano de lançamento: </label>
+          <input type="text" name="ano-lancamento" id="ano-lancamento" /> <br />
+        </div>
+        <div class="item">
+          <label for="desenvolvedora"> Desenvolvedora: </label>
+          <input type="text" name="desenvolvedora" id="desenvolvedora" /> <br />
+        </div>
+        <div class="item">
+          <label for="distribuidora"> Distribuidora: </label>
+          <input type="text" name="distribuidora" id="distribuidora" /> <br />
+        </div>
+      </div>
+      <input
+        type="button"
+        value="Cadastrar"
+        onclick="btnSalvar()"
+        style="padding: 5px"
+      />
+    </form>
+  </body>
+  <script src="script.js"></script>
+</html>
