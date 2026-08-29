@@ -3,7 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Opicional 3 - Details</title>
+
+    <title>Opcional 3 - Details</title>
+
+    <style>
+      .card-detalhes {
+        width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #eee;
+      }
+
+      .card-detalhes h1 {
+        margin-bottom: 20px;
+      }
+
+      .card-detalhes p {
+        margin: 10px 0;
+      }
+
+      .card-detalhes a {
+        display: inline-block;
+        margin-top: 20px;
+      }
+    </style>
   </head>
-  <body></body>
+
+  <body onload="mostrarDetalhes()">
+    <div id="detalhesJogo"></div>
+
+    <script src="details.js"></script>
+  </body>
 </html>

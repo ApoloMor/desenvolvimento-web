@@ -3,6 +3,17 @@ function btnSalvar() {
   const anoLancamento = document.getElementById("ano-lancamento").value;
   const desenvolvedora = document.getElementById("desenvolvedora").value;
   const distribuidora = document.getElementById("distribuidora").value;
+
+  if (
+    nome === "" ||
+    anoLancamento === "" ||
+    desenvolvedora === "" ||
+    distribuidora === ""
+  ) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
   const jogo = {
     nome: nome,
     anoLancamento: anoLancamento,
@@ -17,6 +28,13 @@ function btnSalvar() {
   localStorage.setItem("jogos", JSON.stringify(jogos));
 
   listarJogos();
+
+  document.getElementById("nome").value = "";
+  document.getElementById("ano-lancamento").value = "";
+  document.getElementById("desenvolvedora").value = "";
+  document.getElementById("distribuidora").value = "";
+
+  document.getElementById("nome").focus();
 }
 
 function listarJogos() {
@@ -26,7 +44,31 @@ function listarJogos() {
 
   lista.innerHTML = "";
 
-  jogos.forEach((jogo) => {
-    lista.innerHTML += `<p>${jogo.nome}</p>`;
+  jogos.forEach((jogo, index) => {
+    lista.innerHTML += `
+      <div class="jogo">
+
+        <p>${jogo.nome}</p>
+
+        <a href="details.html?id=${index}">
+          Ver detalhes
+        </a>
+
+        <button onclick="removerJogo(${index})">
+          Remover
+        </button>
+
+      </div>
+    `;
   });
+}
+
+function removerJogo(index) {
+  let jogos = JSON.parse(localStorage.getItem("jogos")) || [];
+
+  jogos.splice(index, 1);
+
+  localStorage.setItem("jogos", JSON.stringify(jogos));
+
+  listarJogos();
 }

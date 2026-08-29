@@ -3,20 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Opicional 3 - Home</title>
+    <title>Opcional 3 - Home</title>
+
     <style>
       * {
         margin: 0;
         padding: 0;
       }
+
       .item {
         margin: 1rem;
       }
+
       .items {
         padding: 2rem;
         display: flex;
         justify-content: center;
       }
+
       #formCadastro {
         display: flex;
         flex-direction: column;
@@ -24,26 +28,46 @@
       }
     </style>
   </head>
-  <body onload="nome.focus(); listarJogos()"">
+
+  <body
+    onload="
+      nome.focus();
+      listarJogos();
+    "
+  >
     <form name="formCadastro" id="formCadastro">
       <div class="items">
         <div class="item">
-          <label for="nome"> Nome do jogo: </label>
-          <input type="text" name="nome" id="nome" /> <br />
+          <label for="nome">Nome do jogo:</label>
+          <input type="text" name="nome" id="nome" required />
         </div>
+
         <div class="item">
-          <label for="ano-lancamento"> Ano de lançamento: </label>
-          <input type="text" name="ano-lancamento" id="ano-lancamento" /> <br />
+          <label for="ano-lancamento">Ano de lançamento:</label>
+          <input
+            type="text"
+            name="ano-lancamento"
+            id="ano-lancamento"
+            required
+          />
         </div>
+
         <div class="item">
-          <label for="desenvolvedora"> Desenvolvedora: </label>
-          <input type="text" name="desenvolvedora" id="desenvolvedora" /> <br />
+          <label for="desenvolvedora">Desenvolvedora:</label>
+          <input
+            type="text"
+            name="desenvolvedora"
+            id="desenvolvedora"
+            required
+          />
         </div>
+
         <div class="item">
-          <label for="distribuidora"> Distribuidora: </label>
-          <input type="text" name="distribuidora" id="distribuidora" /> <br />
+          <label for="distribuidora">Distribuidora:</label>
+          <input type="text" name="distribuidora" id="distribuidora" required />
         </div>
       </div>
+
       <input
         type="button"
         value="Cadastrar"
@@ -51,7 +75,9 @@
         style="padding: 5px"
       />
     </form>
+
     <div id="listaJogos"></div>
+
+    <script src="script.js"></script>
   </body>
-  <script src="script.js"></script>
 </html>
